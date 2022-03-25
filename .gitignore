@@ -1,0 +1,6 @@
+.vscode/
+node_modules/
+
+.text.txt.swp
+.text.txt.swo
+.text.txt.swn

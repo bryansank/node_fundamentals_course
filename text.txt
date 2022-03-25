@@ -1,0 +1,121 @@
+Es un lenguaje concurrente. Es mono-hilo.
+
+Asyncrono.
+
+Un proceso por cada nucleo del procesador.
+
+Corre con el motor V8... Creado por Google.
+Codigo Js a Codigo de maquina, con V8. c++
+
+Node, es todo un MODULO. Exceptuando la sintaxis base (if, else etc etc)
+
+Esta orientado a EVENTOS para escucharlo.
+Podemos programador de forma reactiva. Osea, orientado a EVENTOS.
+Altamente concurrente.
+
+====================================================================
+EVENT LOOP. -- Bucle de eventos y como funciona de forma asincrona.
+
+Event equed pasa el proceso
+a 
+Event loop, Si el proceso no se hace rapido, entonces se lo pasa a 
+a
+Thread Pool - Hilos de ejecucion paara cada proceso, que hara un evento para devolverlo al pool.
+(Slow ops, Files, DB Ops)
+
+======================================================================
+Monohilo, como puede repercutar en la seguridad como DESVENTAJA... Si no lo sabemos evitar.
+
+Okey, debemos escuchar SIEMPRE todo los errores... 
+
+=======================================================================
+En node para importar codigo usamos require.
+Ademas, las funcionalidades que queremos importar, deben estar en :
+module.exports = { funcionAExportar }
+====
+
+
+Tambien Nodejs, aparte de sus HILOS, podemos usar PROCESOS y PROCESOS hijos...
+
+ChildProcess.
+
+=======
+Modulos nativos de c++ en Nodejs
+
+-g node-gyp para compilar modulos nativos en NODE.
+
+creamos index.js
+=>
+const miAddon = require('.build/Release/addon');
+console.log(miAddon.MODULOQUEQUERAMOSLLAMAR)
+
+creamos un archivo binding.gyp
+descargamos nuestro archivo de C++ que vayamos a necesitar
+//json con que va a colompilar, donde esta y como se va a llamar
+{
+	"targets": [
+		{
+			"target_name": "addon",
+			"sources" : ["nombredelarchivocmasmas.cc"]
+		}
+	]
+}
+//nos paramos en la ruta donde este el archivo binding.gyp
+node-gyp configure
+node-gyp build
+
+
+============================================================================
+http es el modulo para crear un servidor O conectarnos a otros servidores...
+=============
+======
+os es el modulo para usar el ordernador... hasta lo mas minimo del hardware.
+
+========================================
+Modulos MUY UTILES son:
+-bcrypt > Es para cifrar cadenas, como para contrase¤as y demas...
+-sharp > Libreria basada en c++ para imagenes y demas..
+-Luxor, Day.js> para usar los Date en js
+
+==========================================
+Para agilizar procesos, usamos la RAM y luego la mandamos al DISCO DURO al finalizar para agilizar tiempo y velocidad.
+----
+Buffer es un conjunto de datos crudos...
+Usaremos buffer que son datos en hexadecimal... FileSystem
+=====================
+Streams, son solo el paso de los datos... Hay 3 tipos de Streams. 
+
+El de lectura.
+El de escritura.
+El de doble sentido.
+
+25/03/2022 -> Me quede en Streams.
+
+=================================
+Benchmark.
+Para saber los times de cada flujo...
+=================================
+
+Ahora vamos a hacer Web Scraping.....
+
+npm i puppeteer
+=================================
+
+Automatizacion de PROCESOS!!!
+Webpack es para empaquetar codigo... No para Automatizacion
+Gulp.js
+gulp-server-livereload es para el Frontend, ya que puedes arrancar vistas html...
+Es un orquestador de distintas tareas si quieres...
+
+=================================
+Ahora vamos a hacer aplicaciones de ESCRITORIO....
+
+(Tecnologia/framework/NOSE)
+
+electron.
+
+
+====================
+PM2 es para lanzar node a correr en produccion mas profesional que nodemon.
+
+Con procesos hijos podemos ejecutar codigo en el sistema...

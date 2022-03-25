@@ -1,0 +1,8 @@
+Hola, 
+Esto es 
+Un Archivo input
+de Ejemplo!
+
+Ya no se que colocar aqui.
+Bueno, lo usaremos para hacer
+.... Streams en node? :v

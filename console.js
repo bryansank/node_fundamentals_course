@@ -1,0 +1,7 @@
+// console.log("algo")
+// console.count("VECES")
+// console.countReset("VECES")
+// console.table()
+// console.info()
+// console.error()
+// console.warn()

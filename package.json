@@ -1,0 +1,25 @@
+{
+  "name": "node_course",
+  "version": "1.0.0",
+  "description": "node, javascript,",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bil": "gulp nombre",
+    "serv": "gulp serve",
+    "default": "gulp",
+    "startElectron": "electron ./Tools_npm/electron_app/"
+  },
+  "keywords": [
+    "node",
+    "bkey"
+  ],
+  "author": "Bryan Key <<bryansan055@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^17.2.0",
+    "gulp": "^4.0.2",
+    "gulp-server-livereload": "^1.9.2",
+    "puppeteer": "^13.5.1"
+  }
+}
