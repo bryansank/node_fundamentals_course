@@ -7,7 +7,17 @@ const fileToolsService = new FileToolsService();
 const pathWithNameFile = [`${__dirname}\\..\\FilesDebbug\\`,  "dataDisplay.txt"];
 const appWithOpen = "notepad.exe";
 
+const boomHandler = require('@hapi/boom');
+const Joi = require('joi');
+// Esto es para conectar las app desde otros origines, usaremos un whitelist
+const whitelist = ['http://localhost:8080', 'https://myapp.ve'];
+const options = { origin : (origin, callback)=>
+    { whitelist.includes(origin) ?  callback(null, true) :  callback(new Error('No permitido')) } 
+}
+const cors = require('cors');
+
 router.use(express.json()); // for parsing application/json
+router.use(cors()); //Es para aceptar solicitudes desde otras conexiones
 
 const sayHello = async (req,respo)=>{
     
@@ -95,26 +105,58 @@ const sayHello = async (req,respo)=>{
     }
 }
 
-const sayHelloTest = async (req,respo)=>{
+const sayHelloTest = async (req,respo, next)=>{
+
+
+
+    // prueba 3
+    // Libreria Boom para manejar errores.
+    // try {
+    //     const name = this.a();
+    //     return;
+    // } catch (error) {
+    //     throw boomHandlerError('Test No encontrado.')
+    // } 
+
+    // prueba 2 para middlewares
+    // try {
+    //     const name = this.a();
+    //     return;
+    // } catch (error) {
+    //     next(error);
+    // }
     
-    const bodyparam = req.body;
+// PRUEBA 1
+//     const bodyparam = req.body;
     
-    if(Object.keys(bodyparam).length != 0){
-// 
-        // respo.status(200).json({"todo":"a"});
-        await fileToolsService.openAndReadFile("").then((data)=>{
-            console.log(data)
-            respo.json({"todo":"good then"})
-        },(err)=>{
-            console.log(err)
-            respo.json({"todo":"errom then"})
-        });
-    }else{
-        respo.json({"todo":"good"})
-    }
+//     if(Object.keys(bodyparam).length != 0){
+// // 
+//         // respo.status(200).json({"todo":"a"});
+//         await fileToolsService.openAndReadFile("").then((data)=>{
+//             console.log(data)
+//             respo.json({"todo":"good then"})
+//         },(err)=>{
+//             console.log(err)
+//             respo.json({"todo":"errom then"})
+//         });
+//     }else{
+//         respo.json({"todo":"good"})
+//     }
+}
+const sayHelloTest2 = (req, res, next)=>{
+
 }
 
-router.post('/', sayHello);
+// router.post('/',validatorHandler(shema, 'body'),  sayHelloTest2);
+router.post('/', sayHelloTest);
+
+const { logErrors, errorHandler, boomHandlerError } = require('../middleware_express/error.handler');
+const {validatorHandler} = require('../middleware_express/error.handler');
+
+// Los middleware de tipo error, SIEMPRE van despues de definir el routing.
+router.use(logErrors);
+// router.use(boomHandlerError);
+router.use(errorHandler);
 
 process.on('uncaughtException', async (error, origin)=>{
     await fileToolsService.writeFileWithName(pathWithNameFile[0],"errorFileException.txt",null,JSON.stringify(error.message));

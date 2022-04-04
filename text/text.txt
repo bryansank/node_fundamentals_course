@@ -119,3 +119,4 @@ electron.
 PM2 es para lanzar node a correr en produccion mas profesional que nodemon.
 
 Con procesos hijos podemos ejecutar codigo en el sistema...
+

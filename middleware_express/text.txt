@@ -1,0 +1,18 @@
+Hay middlewares de tipo error,
+(errorMID,req,res,nextEsParaLlamarOtroMid) => {
+    if(error){
+        res.status(500).json({errorMID});
+    }else{
+        nextEsParaLlamarOtroMid()
+    }
+}
+Voy a hacer un middlewares de forma global.
+-----
+Validacion de datos con Joi.
+npm docs Joi
+esto es para saber la documentacion de CUALQUIER libreria.
+npm i joi
+
+===============
+Debemos usar CORS... Para poder hacer solicitudes desde otros origenes a nuestro API.
+const cors = require('cors');

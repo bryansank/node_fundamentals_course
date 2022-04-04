@@ -1,0 +1,2 @@
+Ahora vamos a usar BOOM
+npm i @hapi/boom
